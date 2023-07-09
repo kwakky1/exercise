@@ -1,95 +1,62 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import { Box, Container, Typography } from "@mui/material";
+import programSetting from "@/app/utils/programSetting";
+import DateInput from "@/components/DateInput";
+import { useState } from "react";
+import record from "../scripts/record";
+import weekOfYear from "dayjs/plugin/weekOfYear";
+import dayjs, { Dayjs } from "dayjs";
+import SecondProgram from "@/components/SecondProgram";
+import FirstProgram from "@/components/FirstProgram";
+
+dayjs.extend(weekOfYear);
 
 export default function Home() {
+  const program = programSetting();
+
+  const [date, setDate] = useState<Dayjs | null>(dayjs());
+
+  const { startDate } = record;
+
+  // 시작 날짜의 주가 1이고 그 시작
+  const firstWeek = dayjs(startDate).week();
+
+  const currentWeek = dayjs(date).week() - firstWeek + 1;
+  let currentDays: "first" | "second" | "third" | undefined;
+  if (dayjs(date).day() === 1) {
+    currentDays = "first";
+  } else if (dayjs(date).day() === 3) {
+    currentDays = "second";
+  } else if (dayjs(date).day() === 4) {
+    currentDays = "third";
+  }
+
+  // first 1 second 3 third 4
+  if (currentDays && currentWeek > 0 && currentWeek < 13) {
+    Object.entries(program[currentWeek][currentDays]).map(
+      ([key, value], index) => {
+        if (index === 0) {
+          console.log(key, value);
+        }
+      }
+    );
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <Container disableGutters={true} maxWidth={"sm"}>
+      <Box p={1}>
+        <Box py={3}>
+          <Typography variant={"h5"}>매드게르만 훈련 프로그램</Typography>
+        </Box>
+        <DateInput value={date} setValue={setDate} label={"날짜"} />
+        {currentDays === "first" && (
+          <FirstProgram program={program[currentWeek][currentDays]} />
+        )}
+        {currentDays === "second" && (
+          <SecondProgram program={program[currentWeek][currentDays]} />
+        )}
+      </Box>
+    </Container>
+  );
 }
