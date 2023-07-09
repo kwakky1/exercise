@@ -31,7 +31,7 @@ const Squat = (props: SquatProps) => {
                 label={`${weight}Kg ${count}${key === "repeat" ? "" : "개"} ${
                   (weight - 20) / 2
                 }kg`}
-                field={`deadLift.${key}`}
+                field={`squat.${key}`}
               />
             );
           })}
