@@ -1,6 +1,5 @@
-import record from "../../scripts/record";
-
-const { weightDifference, smallestWeight } = record;
+const weightDifference = 0.125;
+const smallestWeight = 2.5;
 export function firstSet(firstSquatMain: number) {
   return (
     Math.round(

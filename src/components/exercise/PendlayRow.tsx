@@ -9,7 +9,6 @@ interface PendlayRowProps {
     3: { weight: number; count: number };
     4: { weight: number; count: number };
     5: { weight: number; count: number };
-    repeat: { weight: number; count: string };
   };
 }
 const PendlayRow = (props: PendlayRowProps) => {
@@ -21,7 +20,7 @@ const PendlayRow = (props: PendlayRowProps) => {
           component="legend"
           sx={{ fontWeight: 700, fontSize: 20, color: "black" }}
         >
-          스쿼트
+          펜들레이로우
         </FormLabel>
         <FormGroup>
           {Object.entries(pendlayRow).map(([key, obj]) => {

@@ -1,3 +1,7 @@
+interface RecordsType {
+  [key: string]: RecordType;
+}
+
 interface RecordType {
   squat: number;
   benchPress: number;
@@ -18,7 +22,7 @@ interface FirstSetting {
     3: { weight: number; count: number };
     4: { weight: number; count: number };
     5: { weight: number; count: number };
-    repeat: { weight: number };
+    repeat: { weight: number; count: string };
   };
   benchPress: {
     1: { weight: number; count: number };
@@ -34,7 +38,6 @@ interface FirstSetting {
     3: { weight: number; count: number };
     4: { weight: number; count: number };
     5: { weight: number; count: number };
-    repeat: { weight: number; count: string };
   };
   pullUp: {};
 }
@@ -54,7 +57,12 @@ interface SecondSetting {
     repeat: { weight: number; count: string };
   };
   behindNeckPress: {};
-  frontSquat: {};
+  frontSquat: {
+    1: { weight: number; count: number };
+    2: { weight: number; count: number };
+    3: { weight: number; count: number };
+    repeat: { weight: number; count: string };
+  };
 }
 
 interface ThirdSetting {
@@ -64,7 +72,7 @@ interface ThirdSetting {
     3: { weight: number; count: number };
     4: { weight: number; count: number };
     5: { weight: number; count: number };
-    repeat: { weight: number };
+    repeat: { weight: number; count: string };
   };
   benchPress: {
     1: { weight: number; count: number };

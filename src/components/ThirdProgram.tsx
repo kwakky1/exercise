@@ -3,7 +3,7 @@
 import Squat from "@/components/exercise/Squat";
 
 interface ProgramProps {
-  program: FirstSetting;
+  program: ThirdSetting;
 }
 
 import React from "react";
@@ -13,8 +13,8 @@ import PendlayRow from "@/components/exercise/PendlayRow";
 import Dips from "@/components/exercise/Dips";
 import PullUp from "@/components/exercise/PullUp";
 
-const FirstProgram = ({ program }: ProgramProps) => {
-  const { squat, pendlayRow, dips, pullUp, benchPress } = program;
+const ThirdProgram = ({ program }: ProgramProps) => {
+  const { squat, pendlayRow, dips, chinUp, benchPress } = program;
 
   const methods = useForm<SecondSetting>({
     defaultValues: {},
@@ -35,4 +35,4 @@ const FirstProgram = ({ program }: ProgramProps) => {
   );
 };
 
-export default FirstProgram;
+export default ThirdProgram;

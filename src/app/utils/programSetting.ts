@@ -1,4 +1,4 @@
-import record from "../../scripts/record";
+import records from "../../scripts/record";
 import {
   firstSet,
   fourthSet,
@@ -6,16 +6,15 @@ import {
   thirdSet,
 } from "@/app/utils/setProgram";
 
-const programSetting = (): ProgramSettingProps[] => {
+const programSetting = (user: string): ProgramSettingProps[] => {
   const {
     squat,
     benchPress,
     deadLift,
     pendlayRow,
     overheadPress,
-    barWeight,
     smallestWeight,
-  } = record;
+  } = records[user];
   const program = Array.from({ length: 12 });
 
   return program.map((_, index) => {
@@ -61,10 +60,7 @@ const programSetting = (): ProgramSettingProps[] => {
       smallestWeight;
 
     const deadLiftMain =
-      Math.round(
-        (deadLift * Math.pow(1.025, week - 1 === 0 ? 1 : week - 1)) /
-          (2 * smallestWeight)
-      ) *
+      Math.round((deadLift * Math.pow(1.025, week)) / (2 * smallestWeight)) *
       2 *
       smallestWeight;
 
@@ -101,6 +97,7 @@ const programSetting = (): ProgramSettingProps[] => {
           },
           repeat: {
             weight: secondSet(firstSquatMain),
+            count: "반복",
           },
         },
         benchPress: {
@@ -147,10 +144,6 @@ const programSetting = (): ProgramSettingProps[] => {
             weight: firstPendlayMain,
             count: 5,
           },
-          repeat: {
-            weight: secondSet(firstPendlayMain),
-            count: "반복",
-          },
         },
         pullUp: {},
       },
@@ -196,7 +189,24 @@ const programSetting = (): ProgramSettingProps[] => {
           },
         },
         behindNeckPress: {},
-        frontSquat: {},
+        frontSquat: {
+          1: {
+            weight: firstSet(firstSquatMain),
+            count: 5,
+          },
+          2: {
+            weight: secondSet(firstSquatMain),
+            count: 5,
+          },
+          3: {
+            weight: thirdSet(firstSquatMain),
+            count: 5,
+          },
+          repeat: {
+            weight: secondSet(firstSquatMain),
+            count: "반복",
+          },
+        },
       },
       third: {
         squat: {
@@ -222,6 +232,7 @@ const programSetting = (): ProgramSettingProps[] => {
           },
           repeat: {
             weight: secondSet(thirdSquatMain),
+            count: "반복",
           },
         },
         benchPress: {

@@ -9,6 +9,8 @@ interface ProgramProps {
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import OverheadPress from "@/components/exercise/OverheadPress";
+import BehindNeckPress from "@/components/exercise/BehindNeckPress";
+import FrontSquat from "@/components/exercise/FrontSquat";
 
 const SecondProgram = ({ program }: ProgramProps) => {
   const { deadLift, overheadPress, behindNeckPress, frontSquat } = program;
@@ -23,6 +25,8 @@ const SecondProgram = ({ program }: ProgramProps) => {
         <form>
           <DeadLift deadLift={deadLift} />
           <OverheadPress overheadPress={overheadPress} />
+          <BehindNeckPress />
+          <FrontSquat frontSquat={frontSquat} />
         </form>
       </FormProvider>
     </>
