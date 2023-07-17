@@ -10,19 +10,15 @@ import FirstProgram from "@/components/FirstProgram";
 import SecondProgram from "@/components/SecondProgram";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import ThirdProgram from "@/components/ThirdProgram";
-import { useRecoilValue } from "recoil";
-import authAtom from "@/state/atoms/authAtom";
-import { getCookie } from "cookies-next";
 
 dayjs.extend(weekOfYear);
 
-const Page = () => {
-  const auth = getCookie("auth") as string;
-  const program = programSetting(auth);
+const Page = ({ params }: { params: { id: string } }) => {
+  const program = programSetting(params.id);
 
   const [date, setDate] = useState<Dayjs | null>(dayjs());
 
-  const { startDate } = records[auth];
+  const { startDate } = records[params.id];
 
   // 시작 날짜의 주가 1이고 그 시작
   const firstWeek = dayjs(startDate).week();
@@ -40,13 +36,13 @@ const Page = () => {
   return (
     <Container disableGutters={true} maxWidth={"sm"}>
       <DateInput value={date} setValue={setDate} label={"날짜"} />
-      {currentDays === "first" && (
+      {program && currentDays === "first" && (
         <FirstProgram program={program[currentWeek][currentDays]} />
       )}
-      {currentDays === "second" && (
+      {program && currentDays === "second" && (
         <SecondProgram program={program[currentWeek][currentDays]} />
       )}
-      {currentDays === "third" && (
+      {program && currentDays === "third" && (
         <ThirdProgram program={program[currentWeek][currentDays]} />
       )}
     </Container>

@@ -18,7 +18,7 @@ export default function Home() {
   const handleClick = async (member: string) => {
     setCookie("auth", member);
     setAuth(member);
-    router.push("/exercise");
+    router.push(`/exercise/${member}`);
   };
 
   return (
