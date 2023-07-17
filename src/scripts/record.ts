@@ -23,7 +23,7 @@ const records = {
     smallestWeight: 2.5,
     sameWeek: 2,
     weightDifference: 0.125,
-    startDate: dayjs("2023-06-26").toDate(),
+    startDate: dayjs("2023-07-17").toDate(),
   },
   ted: {
     squat: 115,
@@ -35,7 +35,7 @@ const records = {
     smallestWeight: 2.5,
     sameWeek: 6,
     weightDifference: 0.125,
-    startDate: dayjs("2023-07-17").toDate(),
+    startDate: dayjs("2023-06-19").toDate(),
   },
 } as RecordsType;
 
