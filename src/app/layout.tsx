@@ -1,13 +1,16 @@
-"use client";
-
 import "./globals.css";
 import { Inter } from "next/font/google";
 import React from "react";
 import Header from "@/components/common/Header";
-import { RecoilRoot } from "recoil";
-import Head from "next/head";
+import ProviderRegistry from "@/components/common/ProviderRegistry/ProviderRegistry";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  manifest: "/manifest.json",
+  themeColor: "#ffffff",
+};
 
 export default function RootLayout({
   children,
@@ -16,16 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr">
-      <Head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
-        <meta name="theme-color" content="#fff" />
-      </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <RecoilRoot>
+        <ProviderRegistry>
           <Header />
           {children}
-        </RecoilRoot>
+        </ProviderRegistry>
       </body>
     </html>
   );
