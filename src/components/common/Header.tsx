@@ -20,7 +20,7 @@ const Header = () => {
     }
   }, [setAuth]);
   return (
-    <Container disableGutters={true} maxWidth={"sm"}>
+    <Container maxWidth={"sm"}>
       <Box
         py={3}
         display={"flex"}
@@ -34,7 +34,7 @@ const Header = () => {
           >
             <Image src={logo} alt={"logo"} width={50} height={50} />
           </IconButton>
-          <Typography variant={"h5"}>매드게르만 훈련 프로그램</Typography>
+          <Typography variant={"h6"}>매드게르만 훈련 프로그램</Typography>
         </Box>
         {pathname !== "/" && (
           <Avatar sx={{ width: 60, height: 60 }}>{auth || ""}</Avatar>

@@ -34,7 +34,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <Container disableGutters={true} maxWidth={"sm"}>
+    <Container maxWidth={"sm"}>
       <DateInput value={date} setValue={setDate} label={"날짜"} />
       {program && currentDays === "first" && (
         <FirstProgram program={program[currentWeek][currentDays]} />

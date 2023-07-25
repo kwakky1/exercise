@@ -228,7 +228,7 @@ const programSetting = (user: string): ProgramSettingProps[] => {
           },
           5: {
             weight: thirdSquatMain,
-            count: 5,
+            count: 3,
           },
           repeat: {
             weight: secondSet(thirdSquatMain),
@@ -254,7 +254,7 @@ const programSetting = (user: string): ProgramSettingProps[] => {
           },
           5: {
             weight: thirdBenchMain,
-            count: 5,
+            count: 3,
           },
         },
         dips: {},
